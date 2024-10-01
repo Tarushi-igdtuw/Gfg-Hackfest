@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="./assets/LOGO.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@100;400;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
+    <title>Beacon of Hope</title>
+    <!-- Google Fonts Link For Icons --> 
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,500,0,0" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "@google/generative-ai": "https://esm.run/@google/generative-ai"
+        }
+      }
+    </script>
+
+    <script type="module">
+
+        import { GoogleGenerativeAI } from "@google/generative-ai";
+        const API_KEY = "AIzaSyA6-xapIJnxF7oic1QSXjrk5R3ljJeD8Xk";
+        const genAI = new GoogleGenerativeAI(API_KEY);
+
+        const chatbotToggler = document.querySelector(".chatbot-toggler");
+        const closeBtn = document.querySelector(".close-btn");
+        const chatbox = document.querySelector(".chatbox");
+        const chatInput = document.querySelector(".chat-input textarea");
+        const sendChatBtn = document.querySelector(".chat-input span");
+
+        let userMessage = null;
+        const inputInitHeight = chatInput.scrollHeight;
+
+        async function runModel(prompt) {
+            // For text-only input, use the gemini-pro model
+            const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+
+            const result = await model.generateContent(prompt);
+            const response = await result.response;
+            const text = await response.text();
+            return text;
+        }
+
+
+        const createChatLi = (message, className) => {
+            const chatLi = document.createElement("li");
+            chatLi.classList.add("chat", `${className}`);
+            let chatContent = className === "outgoing" ? `<p></p>` : `<span class="material-symbols-outlined">smart_toy</span><p></p>`;
+            chatLi.innerHTML = chatContent;
+            chatLi.querySelector("p").textContent = message;
+            return chatLi;
+        }
+
+        const generateResponse = async (chatElement, userMessage) => {
+            const messageElement = chatElement.querySelector("p");
+            try {
+                // Define your specific prompt here
+                const prompt = "You are a mental health support AI designed to provide compassionate assistance to individuals struggling with suicidal thoughts , concerned about someone who wants to sucide or are bereaved by suicide . Respond empathetically to the user's message to help them cope. Remember to prioritize their well-being and provide reassurance that they are not alone in their struggles. If you are unsure how to respond, you can always ask clarifying questions to better understand their needs. How can I help you today?                                                                                                                                   Encourage the to prioritize self-care and seeking professional help if needed . Suggesting coping strategies such as mindfulness exercises or reaching out to a trusted friend or family member for support. Remind them that there is hope for recovery and that things can get better with time and support.                                                                                                                                                                                                                                                                Give shorter answers. Ask counter questions try to understand the user's problem. For resources( helpline numbers) refer the user to the GET HELP section of the website. Based on their condition/ situation  , tell them a a story of hope. Use emojies while conversing with user.  Do not use any offensive language.  ";
+
+                // eg: From 1 to 10 how would you rate your current state of mind?
+
+                // Generate response using the user's message and the specific prompt
+                const answer = await runModel(`${prompt} ${userMessage}`);
+                messageElement.textContent = answer;
+            } catch (error) {
+                console.error("Failed to generate response", error);
+                messageElement.textContent = "I'm sorry, I couldn't understand that.";
+            }
+            chatbox.scrollTo(0, chatbox.scrollHeight);
+        }
+
+        const handleChat = () => {
+            userMessage = chatInput.value.trim();
+            if (!userMessage) return;
+
+            // Clear the input textarea and set its height to default
+            chatInput.value = "";
+            chatInput.style.height = `${inputInitHeight}px`;
+
+            // Append the user's message to the chatbox
+            chatbox.appendChild(createChatLi(userMessage, "outgoing"));
+            chatbox.scrollTo(0, chatbox.scrollHeight);
+
+            setTimeout(() => {
+                // Display "Thinking..." message while waiting for the response
+                const incomingChatLi = createChatLi("Thinking...", "incoming");
+                chatbox.appendChild(incomingChatLi);
+                chatbox.scrollTo(0, chatbox.scrollHeight);
+                generateResponse(incomingChatLi, userMessage);
+            }, 600);
+        }
+
+        chatInput.addEventListener("input", () => {
+            // Adjust the height of the input textarea based on its content
+            chatInput.style.height = `${inputInitHeight}px`;
+            chatInput.style.height = `${chatInput.scrollHeight}px`;
+        });
+
+        chatInput.addEventListener("keydown", (e) => {
+            // If Enter key is pressed without Shift key and the window
+            // width is greater than 800px, handle the chat
+            if (e.key === "Enter" && !e.shiftKey && window.innerWidth > 800) {
+                e.preventDefault();
+                handleChat();
+            }
+        });
+
+        sendChatBtn.addEventListener("click", handleChat);
+        closeBtn.addEventListener("click", () => document.body.classList.remove("show-chatbot"));
+        chatbotToggler.addEventListener("click", () => document.body.classList.toggle("show-chatbot"));
+
+    </script>
+
+    <nav>
+        <div class="logo">
+            <img src="./assets/LOGO.png" alt="Logo Image">
+        </div>
+        <div class="hamburger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#story">Stories Of Hope</a></li>
+            <li><a href="#" class="popup-btn">Get Help</a></li>
+            <div class="popup-overlay">
+                <div class="popup-content">
+
+                    <div class="modal-header">
+                        <h1>Get 24/7 support whenever you need it</h1>
+                    </div>
+                    <hr>
+                    <div class="modal-body"> 
+                        <ul>
+                            <li> <span> Call 112. </span> (the national emergency number for India )</li>
+                            <li> <span>Kiran: 1800–599–0019 </span> . A national 24/7 toll free helpline launched by the
+                                Ministry of Social Justice and Empowerment to help people with suicidal thoughts,
+                                depression and other mental health issues.</li>
+                            <li> ND Prana Lifeline :<span> 1800-121-203040 </span> </li>
+                            <li>Vandrevala Foundation (www.vandrevalafoundation.com):<span>+91 9999666555</span>,a 24/7
+                                helpline </li>
+                        </ul>
+                    </div>
+                    <button class="close-btn">Close Popup</button>
+                </div>
+            </div>
+
+            <li><a href="#contactid"><button class="login-button">Contact Us</button></a></li>
+            <li id="google_translate_element"></li>
+            <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+            <script>
+                function googleTranslateElementInit() {
+                    new google.translate.TranslateElement({
+                        pageLanguage: 'en',
+                        includedLanguages: 'en,hi',
+                    }, 'google_translate_element');
+                }
+            </script>
+
+        </ul>
+    </nav>
+
+    <!-- section 1 -->
+    <section class="red">
+        <div class="left">
+            <h1>Beacon of Hope</h1>
+            <p> We are bringing suicide out of the shadows in India. If you or someone you know is struggling with
+                suicidal thoughts or has been affected by suicide, we want you to know that you are not alone. Our team
+                is here to provide you with the emotional support and guidance you need, no matter what you're going
+                through. You can count on us to offer compassionate and understanding assistance to help you overcome
+                the challenges of this sensitive topic.
+            </p>
+            <div class="buttons">
+                <a href="#" class="btnone">You Are Not Alone</a>
+                <a href="" class="btntwo">Talk to Lumina
+                    <span class="material-symbols-outlined">
+                        south_east
+                    </span>
+                </a>
+            </div>
+        </div>
+        <div class="right">
+            <img src="./assets/group.png" alt="">
+        </div>
+    </section>
+
+
+    <!-- section 2 -->
+
+    <section id="support" class="swiper">
+        <div class="swiper-wrapper">
+            <div class="card">
+                <div class="card__content">
+                    <span class="card__title">Are you feeling Sucidal?</span>
+                    <span class="card__name"></span>
+                    <p class="card__text">If you are experiencing suicidal ideation, it is important to take steps to
+                        ensure your safety and seek assistance. Find out what measures you can take to keep yourself
+                        secure and where you can access support.</p>
+                    <!-- <button class="card__btn">View More</button> -->
+                    <a href="https://www.youtube.com/watch?v=n3ZkL5T5Y5M" class="card__btn">View More</a>
+                </div>
+            </div>
+
+            <div class="card">
+
+                <div class="card__content">
+                    <span class="card__title">Are you concerned about someone?</span>
+                    <span class="card__name"></span>
+                    <p class="card__text">If you have an intuition that someone you know may be contemplating suicide,
+                        you may feel unsure about how to approach the situation. Find out what steps you can take to
+                        provide them support.</p>
+                    <!-- <button class="card__btn">View More</button> -->
+                    <a href="https://www.youtube.com/watch?v=B7dKgg4Z9tg" class="card__btn">View More</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card__content">
+                    <span class="card__title">Are you Bereaved by suicide?</span>
+                    <span class="card__name"></span>
+                    <p class="card__text"> We understand the immense difficulty of coping with the loss of a loved one
+                        to suicide. Check out resources available to provide you with support during this challenging
+                        period.</p>
+                    <!-- <button class="card__btn">View More</button> -->
+                    <a href="https://www.youtube.com/watch?v=Jl7axuIeVxI" class="card__btn">View More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- section 3 -->
+    <section id="story">
+        <div class="sun-pics">
+            <img src="./assets/v850-aum-43-removebg-preview.png" alt="sun">
+            <h1>Stories of Hope</h1>
+            <img src="./assets/v850-aum-43-removebg-preview.png" alt="sun">
+        </div>
+        <div class="content" id="body-container">
+            <ul class="team">
+                <li class="member">
+                    <div class="thumb"><img src="./assets/KK.jpg">
+                    </div>
+                    <div class="description">
+                        <h3>Kailash Kher</h3>
+                        <p>Surviving odd jobs and a failed business, I once stood on the brink of ending it all. But a fateful encounter on the banks of the Ganges changed everything, leading me from despair to redemption on the shores of Mumbai.
+                            <span id="dots">...</span><span id="more">User
+                                I had done many odd jobs to survive. I was 20 or 21 when I started doing export business in Delhi. I used to send handicrafts to Germany. Unfortunately, all of a sudden that business collapsed. After facing several problems in business, I went to Rishikesh to become a ‘pandit’. However, I used to feel that I was a misfit there as my fellow mates were younger than me and my views never matched theirs. I was dejected as I was failing in everything..so one day I tried to commit suicide by jumping into the river Ganga. But a person at the Ghat jumped in the Ganga immediately and saved me. He asked, ‘Why did you jump when you don’t know how to swim?’ I replied, ‘To die’ after learning about my intentions of ending my life, he hit me hard on my head. After the incident I locked myself in my room next day, without any meal. I kept wondering about my existence and tried communicating to God during the tough phase. I believe it must be mother Ganga pushing me away and sending me towards father, the sea. So I landed in at the sea shore - Bombay. The way out of such suicidal thoughts came when I stopped thinking whether I am useless or useful and concentrated on my work.</span><br>
+                            <button onclick="myFunction()" id="myBtn1">Read
+                                More</button>
+                        </p>
+                    </div>
+                </li>
+                <li class="member">
+                    <div class="thumb"><img src="./assets/shama.jpg">
+                    </div>
+                    <div class="description">
+                        <h3> Shama Sikander</h3>
+                        <p>Sitting on the floor in a dimly lit room, I was lost in thought. I had secluded myself from
+                            the world. <span id="dots2">...</span> <span id="more2">
+                                Negativity had blinded my mind. I had no desire, hope or ambition in life. I felt
+                                lost in a maze. I had suffered endlessly in my life because of rejection, bullying and
+                                betrayal. I was suffering from depression and bipolar disorder. I felt the only way to
+                                feel
+                                free was to give up my life. I entered my mom’s room, hugged her tight, told her I was
+                                going
+                                to rest and swallowed a lot of sleeping pills. I was rushed to the hospital and brought
+                                back
+                                to life. Initially I was angry with my family for saving me. But the moment of truth
+                                came
+                                soon. The realisation hit me that I if I was alive even after trying to kill myself, I
+                                was
+                                alive for a reason. I decided to put the pieces together and start afresh. Therapy and
+                                meditation helped me discover my biggest strength in my deepest sorrows. It didn’t
+                                happen
+                                overnight. It took me four years to understand my inner self. I slowly started erasing
+                                all
+                                the bad memories. I realised that I was very, very strong. It bought a lot of solace and
+                                happiness. Today, I feel content and happy in my life and career. I am grateful to my
+                                fans
+                                for their love and support. I respect the gift of life. My message to those who like
+                                giving
+                                up: Hang on! Sometimes, the brightest light comes from the darkest places.</span><br>
+                            <button onclick="myFunction2()" id="myBtn2">Read
+                                More</button>
+                        </p>
+                    </div>
+                </li>
+                <li class="member">
+                    <div class="thumb"><img src="./assets/reshma.jpg">
+                    </div>
+                    <div class="description">
+                        <h3>Reshma Qureshi, acid attack survivor</h3>
+                        <p>I was attacked with acid by my estranged brother-in-law when I was 17. He threw concentrated
+                            acid on my face in the street. <span id="dots3">...</span><span id="more3">
+                                We were in our village in Mau Aima, Uttar Pradesh. I had forgotten my burkha back home
+                                in Mumbai so I borrowed my sister’s. My brother-in-law mistook
+                                me for his wife. I felt the most excruciating pain and lost eyesight in my left eye as a
+                                result of the attack. I was in hospital for months. I was the unintended victim of an
+                                attack
+                                that wasn’t even meant for me. My face was so badly injured, that my family didn’t allow
+                                me
+                                to look in the mirror. All the mirrors in the hospitals were covered. When we came home
+                                for
+                                the first time, I went to wash my face in the kitchen. I looked at myself in the mirror
+                                and
+                                couldn’t recognise myself. That night, I tried to hang myself with the dupatta. My
+                                brother
+                                Aizaz woke up when he realised I was shuffling around at night. My family lives in a one
+                                bedroom chawl in Mumbai and everyone sleeps in the same room. Aizaz turned on the lights
+                                and
+                                saw me standing on the bed with a dupatta, aiming to reach the fan. He put two and two
+                                together and screamed. Everyone woke up and panicked. There were tears, consolation and
+                                love. My family told me how much they loved me and comforted me back to sleep. They
+                                motivated me to see therapists and kept telling me that I had to live to see justice.
+                                The
+                                thought of putting my attacker behind bars kept me going strong. I could not die at the
+                                hands of my attacker. He may have taken my face, but my life is mine and mine alone and
+                                I
+                                just had to be reminded of that fact. I saw many acid attack survivors at the NGO Make
+                                Love
+                                Not Scars. They were in so much pain for no mistake of their own. They were the victims
+                                of
+                                someone’s misplaced rage. My heart went out to them and I decided to devote my life to
+                                bring
+                                a smile on their faces. Today, I work with this NGO and help other acid attack survivors
+                                overcome depression. If you want help, do reach out to me. Just don’t kill yourself. The
+                                sun
+                                does shine again. If we don’t have sadness in life, how will we ever appreciate
+                                happiness?
+                                It’s a cycle. We have to accept and embrace that. Keep moving on. One step at a
+                                time.</span>
+                            <br> <button onclick="myFunction3()" id="myBtn3">Read
+                                More</button>
+                    </div>
+                </li>
+                <li class="member">
+                    <div class="thumb"><img src="./assets/sumit.jpg">
+                    </div>
+                    <div class="description">
+                        <h3>Sumit Kumar, student</h3>
+                        <p>It’s Priya’s birthday today…I miss her so deeply. Priya is the love of my life. I had seen
+                            her on my way to coaching classes.<span id="dots4">...</span><span id="more4">
+                                She was dressed in a blue shalwar-kameez and the sunlight
+                                lit up her innocent face. I was astounded by her and realised what love at first sight
+                                meant…We got talking and soon became inseparable. But we didn’t know that our love was
+                                not
+                                going to be easy. Priya is a Brahmin from a village near Hisar, Haryana while I am a
+                                Jat.
+                                Her family was enraged when they got to know about our relationship and we were forced
+                                to
+                                run away to Delhi. Love Commandos, a vigilante group that supports inter-caste and
+                                inter-religious marriages got us wed. We were so happy together. We thought that the
+                                worse
+                                was over but it was only the beginning of our nightmare. We were conned by her family.
+                                They
+                                destroyed our world. They got in touch with her and told her that they were ready to
+                                accept
+                                us. She went to meet them last October and never returned. I got to know that they were
+                                trying to remarry her forcibly. I could not bear the separation and tried to kill myself
+                                by
+                                hanging. My mother saved me, and I can’t thank her enough for that. I returned to the
+                                Love
+                                Commandos shelter. I can’t leave Priya alone. I will fight for her till the end and get
+                                her
+                                back. I will make sure that we live to get justice, whatever it takes. I am a volunteer
+                                with
+                                the NGO now and work to unite lovers. I know that Priya will return one day, and we will
+                                grow old together. Love is invincible..</span>
+                            <br> <button onclick="myFunction4()" id="myBtn4">Read
+                                More</button>
+                        </p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </section>
+
+    <!-- section 4 -->
+    <div class="sec-title" id="contactid">
+        <h2>Let's Get in Touch.</h2>
+    </div>
+    <section class="sec-4">
+        <div class="contact-box">
+            <div class="contact-links">
+                <h2>Tell Us Your Story</h2>
+                <div class="links">
+                    <div class="link">
+                        <a href="https://github.com/abhi03ruchi/Google-AI-Hackathon"><i class="fa-brands fa-github"></i></a>
+                    </div>
+                    <div class="link">
+                        <a href="https://www.youtube.com/@Psych2go"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form-wrapper">
+                <form>
+                    <div class="form-item">
+                        <input type="text" name="sender" required>
+                        <label>Name:</label>
+                    </div>
+                    <div class="form-item">
+                        <input type="text" name="email" required>
+                        <label>Email:</label>
+                    </div>
+                    <div class="form-item">
+                        <textarea class="" name="message" required></textarea>
+                        <label>Message:</label>
+                    </div>
+                    <button class="submit-btn">Send</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <!-- chatbot  -->
+    <button class="chatbot-toggler">
+        <span class="faceImg"> <img src="./assets/chatbot.png" alt="face"> </span>
+        <span class="material-symbols-outlined">close</span>
+    </button>
+
+    <div class="chatbot">
+        <header>
+            <h2>Lumina - Your </h2>
+            <span class="close-btn material-symbols-outlined">close</span>
+        </header>
+        <ul class="chatbox">
+            <li class="chat incoming">
+                <span class="material-symbols-outlined">
+                    psychology_alt
+                </span>
+                <p>Hi there 👋<br>How are you feeling? I'm here for you if you need to talk. </p>
+            </li>
+        </ul>
+        <div class="chat-input">
+            <textarea placeholder="Enter a message..." spellcheck="false" required></textarea>
+            <span id="send-btn" class="material-symbols-rounded">send</span>
+        </div>
+    </div>
+
+    <!-- main code  -->
+
+</body>
+
+</div>
+</div>
+
+</div>
+</section>
+
+
+</body>
+
+
+<script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+    crossorigin="anonymous"></script>
+<script src="script.js"></script>
+
+<script>
+
+    function myFunction() {
+        var dots = document.getElementById("dots");
+        var moreText = document.getElementById("more");
+        var btnText = document.getElementById("myBtn1");
+
+        if (dots.style.display === "none") {
+            dots.style.display = "inline";
+            btnText.innerHTML = "Read more";
+            moreText.style.display = "none";
+        } else {
+            dots.style.display = "none";
+            btnText.innerHTML = "Read less";
+            moreText.style.display = "inline";
+        }
+    }
+
+    function myFunction2() {
+        var dots = document.getElementById("dots2");
+        var moreText = document.getElementById("more2");
+        var btnText = document.getElementById("myBtn2");
+
+        if (dots.style.display === "none") {
+            dots.style.display = "inline";
+            btnText.innerHTML = "Read more";
+            moreText.style.display = "none";
+        } else {
+            dots.style.display = "none";
+            btnText.innerHTML = "Read less";
+            moreText.style.display = "inline";
+        }
+    }
+
+    function myFunction3() {
+        var dots = document.getElementById("dots3");
+        var moreText = document.getElementById("more3");
+        var btnText = document.getElementById("myBtn3");
+
+        if (dots.style.display === "none") {
+            dots.style.display = "inline";
+            btnText.innerHTML = "Read more";
+            moreText.style.display = "none";
+        } else {
+            dots.style.display = "none";
+            btnText.innerHTML = "Read less";
+            moreText.style.display = "inline";
+        }
+    }
+
+    function myFunction4() {
+        var dots = document.getElementById("dots4");
+        var moreText = document.getElementById("more4");
+        var btnText = document.getElementById("myBtn4");
+
+        if (dots.style.display === "none") {
+            dots.style.display = "inline";
+            btnText.innerHTML = "Read more";
+            moreText.style.display = "none";
+        } else {
+            dots.style.display = "none";
+            btnText.innerHTML = "Read less";
+            moreText.style.display = "inline";
+        }
+    }
+</script>
+
+</html>
