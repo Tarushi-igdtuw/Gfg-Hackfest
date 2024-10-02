@@ -7,11 +7,188 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <script type="importmap">
+        {
+          "imports": {
+            "@google/generative-ai": "https://esm.run/@google/generative-ai"
+          }
+        }
+      </script>
+  
+      <script type="module">
+  
+          import { GoogleGenerativeAI } from "@google/generative-ai";
+          const API_KEY = "AIzaSyA6-xapIJnxF7oic1QSXjrk5R3ljJeD8Xk";
+          const genAI = new GoogleGenerativeAI(API_KEY);
+  
+          const chatbotToggler = document.querySelector(".chatbot-toggler");
+          const closeBtn = document.querySelector(".close-btn");
+          const chatbox = document.querySelector(".chatbox");
+          const chatInput = document.querySelector(".chat-input textarea");
+          const sendChatBtn = document.querySelector(".chat-input span");
+  
+          let userMessage = null;
+          const inputInitHeight = chatInput.scrollHeight;
+  
+          async function runModel(prompt) {
+              // For text-only input, use the gemini-pro model
+              const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+  
+              const result = await model.generateContent(prompt);
+              const response = await result.response;
+              const text = await response.text();
+              return text;
+          }
+  
+  
+          const createChatLi = (message, className) => {
+              const chatLi = document.createElement("li");
+              chatLi.classList.add("chat", `${className}`);
+              let chatContent = className === "outgoing" ? `<p></p>` : `<span class="material-symbols-outlined">smart_toy</span><p></p>`;
+              chatLi.innerHTML = chatContent;
+              chatLi.querySelector("p").textContent = message;
+              return chatLi;
+          }
+  
+          const generateResponse = async (chatElement, userMessage) => {
+              const messageElement = chatElement.querySelector("p");
+              try {
+                  // Define your specific prompt here
+                  const prompt = "You are a mental health support AI designed to provide compassionate assistance to individuals struggling with suicidal thoughts , concerned about someone who wants to sucide or are bereaved by suicide . Respond empathetically to the user's message to help them cope. Remember to prioritize their well-being and provide reassurance that they are not alone in their struggles. If you are unsure how to respond, you can always ask clarifying questions to better understand their needs. How can I help you today?                                                                                                                                   Encourage the to prioritize self-care and seeking professional help if needed . Suggesting coping strategies such as mindfulness exercises or reaching out to a trusted friend or family member for support. Remind them that there is hope for recovery and that things can get better with time and support.                                                                                                                                                                                                                                                                Give shorter answers. Ask counter questions try to understand the user's problem. For resources( helpline numbers) refer the user to the GET HELP section of the website. Based on their condition/ situation  , tell them a a story of hope. Use emojies while conversing with user.  Do not use any offensive language.  ";
+  
+                  // eg: From 1 to 10 how would you rate your current state of mind?
+  
+                  // Generate response using the user's message and the specific prompt
+                  const answer = await runModel(`${prompt} ${userMessage}`);
+                  messageElement.textContent = answer;
+              } catch (error) {
+                  console.error("Failed to generate response", error);
+                  messageElement.textContent = "I'm sorry, I couldn't understand that.";
+              }
+              chatbox.scrollTo(0, chatbox.scrollHeight);
+          }
+  
+          const handleChat = () => {
+              userMessage = chatInput.value.trim();
+              if (!userMessage) return;
+  
+              // Clear the input textarea and set its height to default
+              chatInput.value = "";
+              chatInput.style.height = `${inputInitHeight}px`;
+  
+              // Append the user's message to the chatbox
+              chatbox.appendChild(createChatLi(userMessage, "outgoing"));
+              chatbox.scrollTo(0, chatbox.scrollHeight);
+  
+              setTimeout(() => {
+                  // Display "Thinking..." message while waiting for the response
+                  const incomingChatLi = createChatLi("Thinking...", "incoming");
+                  chatbox.appendChild(incomingChatLi);
+                  chatbox.scrollTo(0, chatbox.scrollHeight);
+                  generateResponse(incomingChatLi, userMessage);
+              }, 600);
+          }
+  
+          chatInput.addEventListener("input", () => {
+              // Adjust the height of the input textarea based on its content
+              chatInput.style.height = `${inputInitHeight}px`;
+              chatInput.style.height = `${chatInput.scrollHeight}px`;
+          });
+  
+          chatInput.addEventListener("keydown", (e) => {
+              // If Enter key is pressed without Shift key and the window
+              // width is greater than 800px, handle the chat
+              if (e.key === "Enter" && !e.shiftKey && window.innerWidth > 800) {
+                  e.preventDefault();
+                  handleChat();
+              }
+          });
+  
+          sendChatBtn.addEventListener("click", handleChat);
+          closeBtn.addEventListener("click", () => document.body.classList.remove("show-chatbot"));
+          chatbotToggler.addEventListener("click", () => document.body.classList.toggle("show-chatbot"));
+  
+      </script>
+  
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">
+            <img src="../assets/LOGO.png" alt="Logo Image">
+        </div>
+        <ul class="nav-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="#"><button class="login-button" id="logout-button">Logout</button></a></li>
+            <li id="google_translate_element"></li>
+        </ul>
+        <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+        <script>
+            function googleTranslateElementInit() {
+                new google.translate.TranslateElement({
+                    pageLanguage: 'en',
+                    includedLanguages: 'en,hi',
+                }, 'google_translate_element');
+            }
+        </script>
+    </nav>
+
+    <!-- Dashboard Body -->
     <div class="dashboard-container">
-        <h2>Welcome to the Dashboard</h2>
-        <button id="logout-button">Logout</button>
+        <h1>Welcome to the Dashboard</h1>
+        <section id="features" class="swiper">
+            <div class="swiper-wrapper">
+                <!-- Moods History Card -->
+                <div class="card">
+                    <div class="card__content">
+                        <span class="card__title">Moods History</span>
+                        <p class="card__text">Track and view your mood history over time.</p>
+                        <a href="../moodHistory.html" class="card__btn">View History</a>
+                    </div>
+                </div>
+                <!-- Community Forum Card -->
+                <div class="card">
+                    <div class="card__content">
+                        <span class="card__title">Community Forum</span>
+                        <p class="card__text">Engage in conversations and get support from the community.</p>
+                        <a href="../communityForum.html" class="card__btn">Join Forum</a>
+                    </div>
+                </div>
+                <!-- Gratitude Journal Card -->
+                <div class="card">
+                    <div class="card__content">
+                        <span class="card__title">Gratitude Journal</span>
+                        <p class="card__text">Record what you're grateful for and reflect on your day.</p>
+                        <a href="../gratitudeJournal.html" class="card__btn">Write in Journal</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <button class="chatbot-toggler">
+        <span class="faceImg"> <img src="../assets/chatbot.png" alt="face"> </span>
+        <span class="material-symbols-outlined">close</span>
+    </button>
+
+    <div class="chatbot">
+        <header>
+            <h2>Lumina - Your </h2>
+            <span class="close-btn material-symbols-outlined">close</span>
+        </header>
+        <ul class="chatbox">
+            <li class="chat incoming">
+                <span class="material-symbols-outlined">
+                    psychology_alt
+                </span>
+                <p>Hi there 👋<br>How are you feeling? I'm here for you if you need to talk. </p>
+            </li>
+        </ul>
+        <div class="chat-input">
+            <textarea placeholder="Enter a message..." spellcheck="false" required></textarea>
+            <span id="send-btn" class="material-symbols-rounded">send</span>
+        </div>
     </div>
 
+
+    <!-- Logout Script -->
     <script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-auth.js"></script>
     <script>
