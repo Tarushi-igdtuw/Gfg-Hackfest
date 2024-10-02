@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mood History with Visualization</title>
+    <style>
+        body {
+            background-color: #fff5d7;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        h1 {
+            color: #4a4a4a;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        #mood-history-chart {
+            max-width: 600px;
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Mood History Visualization</h1>
+    
+    <!-- Canvas for the Chart -->
+    <canvas id="mood-history-chart"></canvas>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        // Function to map mood to numerical values for visualization
+        function getMoodValue(mood) {
+            const moodMap = {
+                'happy': 5,
+                'excited': 4,
+                'neutral': 3,
+                'anxious': 2,
+                'sad': 1
+            };
+            return moodMap[mood.toLowerCase()] || 0;
+        }
+
+        // Fetch mood history from the backend and visualize it
+        fetch('http://localhost:3000/moods')
+        .then(response => response.json())
+        .then(data => {
+            // Process the mood data to extract timestamps and corresponding mood values
+            const timestamps = data.map(entry => new Date(entry.date).toLocaleDateString());
+            const moodValues = data.map(entry => getMoodValue(entry.mood));
+
+            // Create a line chart with Chart.js
+            const ctx = document.getElementById('mood-history-chart').getContext('2d');
+            const moodChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: timestamps, // Dates for the x-axis
+                    datasets: [{
+                        label: 'Mood Over Time',
+                        data: moodValues, // Mood values for the y-axis
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 2,
+                        fill: true,
+                        pointRadius: 5,
+                        pointHoverRadius: 7
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Date'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Mood'
+                            },
+                            ticks: {
+                                beginAtZero: true,
+                                stepSize: 1,
+                                max: 5
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const moodLabels = ['Sad', 'Anxious', 'Neutral', 'Excited', 'Happy'];
+                                    return `Mood: ${moodLabels[context.raw - 1]}`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        })
+        .catch(error => console.error('Error fetching mood history:', error));
+    </script>
+</body>
+</html>

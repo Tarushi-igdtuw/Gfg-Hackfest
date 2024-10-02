@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mood Tracker</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <h1>How are you feeling today?</h1>
+    
+    <div class="mood-selection">
+      <label>
+        <input type="radio" name="mood" value="happy" id="happy">
+        <div class="mood-btn">😊</div>
+      </label>
+      <label>
+        <input type="radio" name="mood" value="neutral" id="neutral">
+        <div class="mood-btn">😐</div>
+      </label>
+      <label>
+        <input type="radio" name="mood" value="sad" id="sad">
+        <div class="mood-btn">😔</div>
+      </label>
+      <label>
+        <input type="radio" name="mood" value="anxious" id="anxious">
+        <div class="mood-btn">😰</div>
+      </label>
+      <label>
+        <input type="radio" name="mood" value="excited" id="excited">
+        <div class="mood-btn">😄</div>
+      </label>
+    </div>
+    
+    <button class="submit-btn" id="submit">Submit Mood</button>
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>
