@@ -1,0 +1,37 @@
+<!--
+    <div id="forum-section">
+        <textarea id="post-content" placeholder="Share your thoughts..."></textarea>
+        <button id="post-btn">Post Anonymously</button>
+
+        <div id="posts"></div>
+    </div>       
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Forum</title>
+    <link rel="stylesheet" href="forum.css">
+</head>
+<body>
+    <h1>Community Support Forum</h1>
+
+    <!-- Section to post new content -->
+    <div id="new-post-section">
+        <textarea id="post-content" placeholder="Share your thoughts..." rows="4"></textarea>
+        <button id="post-btn">Post Anonymously</button>
+    </div>
+
+    <!-- Display forum posts -->
+    <div id="forum-posts">
+        <h2>Posts</h2>
+        <div id="posts-container"></div>
+    </div>
+
+    <!-- Firebase config and forum logic -->
+    <script src="firebaseConfig.js"></script>
+    <script src="forum.js"></script>
+</body>
+</html>
