@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <h2>Welcome to the Dashboard</h2>
+        <button id="logout-button">Logout</button>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-auth.js"></script>
+    <script>
+      const logoutButton = document.getElementById('logout-button');
+
+      logoutButton.addEventListener('click', () => {
+        auth.signOut().then(() => {
+          alert('Logged out successfully!');
+          window.location.href = 'login.html';
+        }).catch((error) => {
+          alert(error.message);
+        });
+      });
+    </script>
+</body>
+</html>
