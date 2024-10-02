@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Health Journal</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Gratitude Journal & Positive Affirmations</h1>
+        
+        <!-- Gratitude Journal -->
+        <div class="gratitude-section">
+            <h2>Daily Gratitude Log</h2>
+            <form id="gratitudeForm">
+                <textarea id="gratitude1" placeholder="I am grateful for..."></textarea>
+                <textarea id="gratitude2" placeholder="I am grateful for..."></textarea>
+                <textarea id="gratitude3" placeholder="I am grateful for..."></textarea>
+                <button type="button" onclick="submitGratitude()">Submit Gratitude</button>
+            </form>
+        </div>
+
+        <!-- Positive Affirmations -->
+        <div class="affirmation-section">
+            <h2>Daily Affirmation</h2>
+            <div id="affirmationDisplay">You are strong and capable of overcoming challenges.</div>
+            <button onclick="generateAffirmation()">New Affirmation</button>
+        </div>
+        
+        <!-- Gratitude Log -->
+        <div class="gratitude-log">
+            <h2>Your Gratitude Entries</h2>
+            <ul id="gratitudeLog"></ul>
+        </div>
+    </div>
+
+    <script src="firebase-config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
