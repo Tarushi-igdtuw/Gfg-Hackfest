@@ -1,55 +1,6 @@
-/*
 import { db } from './firebaseConfig.js';
 import { 
-    collection, addDoc, getDocs, serverTimestamp, query, orderBy 
-} from "https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js";
-
-// For creating a new post
-async function createPost(content) {
-    const anonymousName = `User${Math.floor(Math.random() * 10000)}`;
-    const post = {
-        anonymousName,
-        content,
-        createdAt: serverTimestamp(),
-    };
-
-    await addDoc(collection(db, 'posts'), post);
-    loadPosts();
-}
-
-// Load posts from Firestore 
-async function loadPosts() {
-    const postsDiv = document.getElementById('posts'); 
-    postsDiv.innerHTML = ''; // Clear previous posts
-
-    const q = query(collection(db, 'posts'), orderBy('createdAt', 'desc'));
-    const querySnapshot = await getDocs(q);
-
-    querySnapshot.forEach(doc => {
-        const post = doc.data();
-        const postDiv = document.createElement('div');
-        postDiv.innerHTML = `<p><strong>${post.anonymousName}:</strong> ${post.content}</p>`;
-        postsDiv.appendChild(postDiv);
-    });
-}
-
-// Handle post button click
-document.getElementById('post-btn').addEventListener('click', () => {
-    const content = document.getElementById('post-content').value;
-    createPost(content);
-});
-
-// Load posts on page load
-window.onload = loadPosts;
-*/
-
-
-
-
-// forum.js
-import { db } from './firebaseConfig.js';
-import { 
-    collection, addDoc, getDocs, doc, updateDoc, serverTimestamp, query, orderBy 
+    collection, addDoc, getDocs, doc, updateDoc, serverTimestamp, query, orderBy
 } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js";
 
 // Function to create a new post
@@ -58,10 +9,10 @@ async function createPost(content) {
     const post = {
         anonymousName,
         content,
-        createdAt: serverTimestamp(),
-        replies: []  // Array to store replies
+        createdAt: serverTimestamp()  // Server-side timestamp
     };
 
+    // Add the new post to Firestore
     await addDoc(collection(db, 'posts'), post);
     loadPosts();  // Reload posts after creating a new one
 }
@@ -86,36 +37,58 @@ async function loadPosts() {
         `;
         postsContainer.appendChild(postDiv);
 
-        // Load replies
-        post.replies.forEach(reply => {
-            const replyDiv = document.createElement('div');
-            replyDiv.classList.add('reply');
-            replyDiv.innerHTML = `<p><strong>${reply.anonymousName}:</strong> ${reply.content}</p>`;
-            document.getElementById(`replies-${docSnapshot.id}`).appendChild(replyDiv);
+        // Load replies (stored in subcollection)
+        loadReplies(docSnapshot.id);
+
+        // Set up event delegation for reply buttons
+        postsContainer.addEventListener('click', (event) => {
+            if (event.target.classList.contains('reply-btn')) {
+                const postId = event.target.getAttribute('data-post-id');
+                addReply(postId);  // Call addReply function with the post ID
+            }
         });
+
+    });
+}
+
+
+// Function to load replies for a post
+async function loadReplies(postId) {
+    const repliesContainer = document.getElementById(`replies-${postId}`);
+    repliesContainer.innerHTML = ''; // Clear existing replies
+
+    const repliesSnapshot = await getDocs(collection(db, 'posts', postId, 'replies'));
+    repliesSnapshot.forEach(replyDoc => {
+        const reply = replyDoc.data();
+        const replyDiv = document.createElement('div');
+        replyDiv.classList.add('reply');
+        replyDiv.innerHTML = `<p><strong>${reply.anonymousName}:</strong> ${reply.content}</p>`;
+        repliesContainer.appendChild(replyDiv);
     });
 }
 
 // Function to add a reply to a post
-async function addReply(postId) {
+window.addReply = async function(postId) {  // Attach to window
     const replyContent = document.getElementById(`reply-${postId}`).value;
-    const anonymousName = `User${Math.floor(Math.random() * 10000)}`;
-    const reply = { anonymousName, content: replyContent };
+    if (replyContent.trim() === '') return; // Don't allow empty replies
 
-    const postRef = doc(db, 'posts', postId);
-    const postSnapshot = await postRef.get();
-    const post = postSnapshot.data();
+    const anonymousName = `User${Math.floor(Math.random() * 10000)}`; // Generate anonymous name
+    const reply = { anonymousName, content: replyContent, createdAt: serverTimestamp() };
 
-    const updatedReplies = [...post.replies, reply];
-    await updateDoc(postRef, { replies: updatedReplies });
+    // Add the reply to the post's replies subcollection
+    await addDoc(collection(db, 'posts', postId, 'replies'), reply);
 
-    loadPosts();  // Reload posts to show the new reply
-}
+    document.getElementById(`reply-${postId}`).value = ''; // Clear the reply textarea
+    loadReplies(postId);  // Reload replies to show the new reply
+};
 
 // Handle post button click
 document.getElementById('post-btn').addEventListener('click', () => {
     const content = document.getElementById('post-content').value;
-    createPost(content);
+    if (content.trim()) {
+        createPost(content);
+        document.getElementById('post-content').value = ''; // Clear the textarea
+    }
 });
 
 // Load posts when the page loads
