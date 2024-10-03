@@ -1,57 +1,247 @@
-/* forum.css */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 20px;
-  background-color: #f4f4f4;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-h1 {
-  text-align: center;
-  margin-bottom: 20px;
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #fff5d7;
+    color: #333;
 }
+
+
+/* Navbar Styling */
+nav {
+  width: 100%;
+  background-color: #fff5d7;
+  box-shadow: 0 3px 20px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+}
+
+nav .logo img {
+  height: 5rem;
+  width: 5rem;
+}
+
+.nav-links {
+  display: flex;
+    list-style: none; 
+    width: 60vw;
+    justify-content: space-around;
+    align-items: center;
+    text-transform: uppercase;
+}
+
+.nav-links li {
+  text-decoration: none;
+  font-size: 20px;
+  color: #000;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  font-size: 20px;
+  color: #000;
+  transition: color 0.3s ease;
+}
+
+.nav-links li a:hover {
+  color: #c80e13;
+}
+
+.login-button {
+  background-color: transparent;
+  border: 1.5px solid black;
+  border-radius: 2em;
+  padding: 0.6rem 0.8rem;
+  font-size: 1rem;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.login-button:hover {
+  background-color: #ff5e6c;
+  border: 1.5px solid black;
+  color: white;
+  transition: all 0.3s ease;
+}
+.container {
+  margin-top: 50px;
+  padding: 20px;
+}
+
+.container h1 {
+    text-align: center;
+    padding: 20px;
+    color: #c80e13;
+    border-radius: 10px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    font-size: 60px;
+}
+.sun-pics {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.sun-pics img {
+  height: 100px;
+  width: auto;
+}
+
+.contact-box {
+  width: 100%;
+  height: 72vh;
+  border-radius: 5px;
+  background-color: #ff5e6c;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  }
+  
+  .contact-links, .contact-form-wrapper {
+  width: 50%;
+  padding: 8% 5% 10% 5%;
+  }
+  
+  
+  .contact-links {
+  background-color: #ff5e6c;
+  background:
+    radial-gradient(
+      circle at 55% 92%, #ff5e6c 0 12%, transparent 12.2%
+    ), 
+    radial-gradient(
+      circle at 94% 72%, #ff5e6c 0 10%, transparent 10.2%
+    ), 
+    radial-gradient(
+      circle at 20% max(78%, 350px), #ffaaab 0 7%, transparent 7.2%
+    ), 
+    radial-gradient(
+      circle at 0% 0%,  #ffaaab 0 40%, transparent 40.2%
+    ), 
+    pink;
+  border-radius: 10px 0 0 10px;
+  }
+  .contact-links h2 {
+  color: #fff;
+  font-size: clamp(30px, 6vw, 60px);
+  letter-spacing: 2px;
+  text-align: center;
+  }
+  
+  .contact-links p {
+  color: #c80e13;
+  font-size: 20px;
+  margin-top: 20px;
+
+  }
+  
+  .contact-form-wrapper {
+  border-radius: 0 10px 10px 0;
+  }
+
 
 #new-post-section {
-  margin-bottom: 30px;
+    background-color:#ff5e6c;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
 }
 
-textarea {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+#post-content {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    font-family: 'Poppins', sans-serif;
+    outline: none;
 }
 
-button {
-  padding: 10px 20px;
-  background-color: #007BFF;
+#post-btn {
+    background-color: #fd917e;
+    color: #fff;
+    font-family: "Poppins", sans-serif;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+#post-btn:hover {
+    background-color: #c80e13;
+    transform: scale(1.05);
+}
+
+#forum-posts {
+    padding: 20px;
+}
+
+#forum-posts h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+#posts-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    header h1 {
+        font-size: 24px;
+    }
+
+    #post-content {
+        font-size: 14px;
+    }
+
+    #post-btn {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+}
+footer {
+  background-color: #ff5e6c;
   color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+  text-align: center;
+  padding: 20px 0;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  font-size: 16px;
+  box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.1);
 }
 
-button:hover {
-  background-color: #0056b3;
+footer p {
+  margin: 0;
 }
 
-.post {
-  padding: 15px;
-  margin-bottom: 20px;
-  background-color: white;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
-
-.replies {
-  margin-top: 10px;
-  padding-left: 20px;
-}
-
-.reply {
-  margin-top: 5px;
-  padding: 10px;
-  background-color: #f9f9f9;
-  border-left: 3px solid #007BFF;
+footer .team-name {
+  color: #fff5d7;
+  font-weight: bold;
 }

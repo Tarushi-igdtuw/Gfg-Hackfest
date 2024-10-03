@@ -5,15 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mental Health Journal</title>
     <link rel="stylesheet" href="gratitude.css">
-    <script type="module" src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js"></script>
-    <!-- <script type="module" src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script> -->
-    <script type="module" src="https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js"></script>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
 </head>
 <body>
-
+    <nav>
+        <div class="logo">
+            <img src="../website/assets/LOGO.png" alt="Logo Image">
+        </div>
+        <ul class="nav-links">
+            <li><a href="../website/Login/dashboard.html">DashBoard</a></li>
+            <li><a href="#"><button class="login-button" id="logout-button">Logout</button></a></li>
+            <li id="google_translate_element"></li>
+        </ul>
+        <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+        <script>
+            function googleTranslateElementInit() {
+                new google.translate.TranslateElement({
+                    pageLanguage: 'en',
+                    includedLanguages: 'en,hi',
+                }, 'google_translate_element');
+            }
+        </script>
+    </nav>
+    
     <div class="container">
-        <h1>Gratitude Journal & Positive Affirmations</h1>
+          <!-- Positive Affirmations -->
+          <div class="affirmation-section">
+            <h2>Daily Affirmation</h2>
+            <div id="affirmationDisplay">You are strong and capable of overcoming challenges.</div>
+            <button onclick="generateAffirmation()">New Affirmation</button>
+        </div>
+
         
+        <div class="sun-pics">
+            <img src="../website/assets/v850-aum-43-removebg-preview.png" alt="sun">
+            <h1>Gratitude Journal </h1>
+            <img src="../website/assets/v850-aum-43-removebg-preview.png" alt="sun">
+        </div>
+
         <!-- Gratitude Journal -->
         <div class="gratitude-section">
             <h2>Daily Gratitude Log</h2>
@@ -25,21 +57,17 @@
             </form>
         </div>
 
-        <!-- Positive Affirmations -->
-        <div class="affirmation-section">
-            <h2>Daily Affirmation</h2>
-            <div id="affirmationDisplay">You are strong and capable of overcoming challenges.</div>
-            <button onclick="generateAffirmation()">New Affirmation</button>
-        </div>
-        
         <!-- Gratitude Log -->
         <div class="gratitude-log">
             <h2>Your Gratitude Entries</h2>
             <ul id="gratitudeLog"></ul>
         </div>
     </div>
+    <footer>
+        <p>Developed by Team <span class="team-name">beaconOfHope</span> @ 2024</p>
+    </footer>
 
-    <script type="module" src="firebaseConfig.js"></script>
-    <script type="module" src="gratitude.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="gratitude.js"></script>
 </body>
 </html>

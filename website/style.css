@@ -1113,3 +1113,24 @@ header h2 {
     display: block;
   }
 }
+
+footer {
+  background-color: #ff5e6c;
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  font-size: 16px;
+  box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.1);
+}
+
+footer p {
+  margin: 0;
+}
+
+footer .team-name {
+  color: #fff5d7;
+  font-weight: bold;
+}

@@ -7,19 +7,59 @@
     <link rel="stylesheet" href="forum.css">
 </head>
 <body>
-    <h1>Community Support Forum</h1>
+    <nav>
+        <div class="logo">
+            <img src="../website/assets/LOGO.png" alt="Logo Image">
+        </div>
+        <ul class="nav-links">
+            <li><a href="../website/Login/dashboard.html">DashBoard</a></li>
+            <li><a href="#"><button class="login-button" id="logout-button">Logout</button></a></li>
+            <li id="google_translate_element"></li>
+        </ul>
+        <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+        <script>
+            function googleTranslateElementInit() {
+                new google.translate.TranslateElement({
+                    pageLanguage: 'en',
+                    includedLanguages: 'en,hi',
+                }, 'google_translate_element');
+            }
+        </script>
+    </nav>
 
-    <!-- Section to post new content -->
-    <div id="new-post-section">
-        <textarea id="post-content" placeholder="Share your thoughts..." rows="4"></textarea>
-        <button id="post-btn">Post Anonymously</button>
-    </div>
+     <!-- Add a class to container for layout adjustment -->
+     <div class="container">
 
-    <!-- Display forum posts -->
-    <div id="forum-posts">
-        <h2>Posts</h2>
-        <div id="posts-container"></div>
+        <div class="sun-pics">
+            <img src="../website/assets/v850-aum-43-removebg-preview.png" alt="sun">
+            <h1>Community Support Forum </h1>
+            <img src="../website/assets/v850-aum-43-removebg-preview.png" alt="sun">
+        </div>
+
+        <div class="contact-box">
+            <div class="contact-links">
+                <h2>Tell Us Your Story</h2>
+                <p>Share your stories anonymously about overcoming life's challenges or mental health conditions, seek advice, respond to others facing similar experiences, and offer support through meaningful conversations.
+                </p>
+            </div>
+            <div class="contact-form-wrapper">
+                <div id="new-post-section">
+                    <textarea id="post-content" placeholder="Share your thoughts..." rows="10" ></textarea>
+                    <button id="post-btn">Post Anonymously</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="forum-posts">
+            <header>
+                <h1>Posts</h1>
+            </header>
+            <div id="posts-container"></div>
+        </div>
     </div>
+    <footer>
+        <p>Developed by Team <span class="team-name">beaconOfHope</span> @ 2024</p>
+    </footer>
 
     <!-- Firebase config and forum logic -->
     <script type="module" src="./firebaseConfig.js"></script>
