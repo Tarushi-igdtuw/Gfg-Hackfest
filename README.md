@@ -35,9 +35,6 @@
 ## What's next for Beacon Of Hope
 
 ## Made By :
-
-  <img src="https://github.com/abhi03ruchi.png" width="60px;"/>
-  <img src="https://github.com/harshita099.png" width="60px;"/>
-  <img src="https://github.com/Tarushi-igdtuw.png" width="60px;"/>
+  <img src="https://github.com/abhi03ruchi.png" width="60px;"/> <img src="https://github.com/harshita099.png" width="60px;"/> <img src="https://github.com/Tarushi-igdtuw.png" width="60px;"/>
   
 # Gfg-Hackfest
