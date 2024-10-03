@@ -1,51 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mood History with Visualization</title>
-    <style>
-        body {
-            background-color: #fff5d7;
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        h1 {
-            color: #4a4a4a;
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-
-        #mood-history-chart {
-            max-width: 600px;
-            width: 100%;
-        }
-
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 1.8rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="moodHistory.css">
 </head>
+
 <body>
-    <h1>Mood History Visualization</h1>
-    
+    <nav>
+        <div class="logo">
+            <img src="../website/assets/LOGO.png" alt="Logo Image">
+        </div>
+        <ul class="nav-links">
+            <li><a href="../website/Login/dashboard.html">DashBoard</a></li>
+            <li><a href="#"><button class="login-button" id="logout-button">Logout</button></a></li>
+            <li id="google_translate_element"></li>
+        </ul>
+        <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+        <script>
+            function googleTranslateElementInit() {
+                new google.translate.TranslateElement({
+                    pageLanguage: 'en',
+                    includedLanguages: 'en,hi',
+                }, 'google_translate_element');
+            }
+        </script>
+    </nav>
+    <div class="sun-pics">
+        <img src="../website/assets/v850-aum-43-removebg-preview.png" alt="sun">
+        <h1>Mood Chart </h1>
+        <img src="../website/assets/v850-aum-43-removebg-preview.png" alt="sun">
+    </div>
     <!-- Canvas for the Chart -->
-    <canvas id="mood-history-chart"></canvas>
+    <!-- Canvas for the Chart -->
+    <canvas id="mood-history-chart" width="1200" height="1000"></canvas>
+
+    <div class="sun-pics">
+        <img src="../website/assets/v850-aum-43-removebg-preview.png" alt="sun">
+        <h1>Mood Count </h1>
+        <img src="../website/assets/v850-aum-43-removebg-preview.png" alt="sun">
+    </div>
+    <!-- Mood Count Chart -->
+    <div id="canvas-container">
+        <canvas id="mood-count-chart"></canvas>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -62,68 +62,215 @@
             return moodMap[mood.toLowerCase()] || 0;
         }
 
+        // Function to map mood to emojis for y-axis display
+        function getMoodEmoji(value) {
+            const emojiMap = {
+                5: '😊',
+                4: '😄',
+                3: '😐',
+                2: '😰',
+                1: '😔'
+            };
+            return emojiMap[value] || '❓';
+        }
+
         // Fetch mood history from the backend and visualize it
         fetch('http://localhost:3000/moods')
-        .then(response => response.json())
-        .then(data => {
-            // Process the mood data to extract timestamps and corresponding mood values
-            const timestamps = data.map(entry => new Date(entry.date).toLocaleDateString());
-            const moodValues = data.map(entry => getMoodValue(entry.mood));
+            .then(response => response.json())
+            .then(data => {
+                // Process the mood data to extract timestamps and corresponding mood values
+                const timestamps = data.map(entry => new Date(entry.date).toLocaleDateString());
+                const moodValues = data.map(entry => getMoodValue(entry.mood));
 
-            // Create a line chart with Chart.js
-            const ctx = document.getElementById('mood-history-chart').getContext('2d');
-            const moodChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: timestamps, // Dates for the x-axis
-                    datasets: [{
-                        label: 'Mood Over Time',
-                        data: moodValues, // Mood values for the y-axis
-                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        borderWidth: 2,
-                        fill: true,
-                        pointRadius: 5,
-                        pointHoverRadius: 7
-                    }]
-                },
-                options: {
-                    scales: {
-                        x: {
-                            title: {
-                                display: true,
-                                text: 'Date'
-                            }
-                        },
-                        y: {
-                            title: {
-                                display: true,
-                                text: 'Mood'
-                            },
-                            ticks: {
-                                beginAtZero: true,
-                                stepSize: 1,
-                                max: 5
-                            }
-                        }
+                // Create a line chart with Chart.js
+                const ctx = document.getElementById('mood-history-chart').getContext('2d');
+                const moodChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: timestamps, // Dates for the x-axis
+                        datasets: [{
+                            label: 'Mood Over Time',
+                            data: moodValues, // Numeric mood values for the y-axis
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            backgroundColor: 'rgba(75, 192, 192, 0.1)',
+                            borderWidth: 3,
+                            fill: true,
+                            pointRadius: 6,
+                            pointBackgroundColor: 'rgba(75, 192, 192, 1)',
+                            pointHoverRadius: 8,
+                            pointHoverBackgroundColor: 'rgba(255, 99, 132, 1)',
+                            tension: 0.4 // Smooth line effect
+                        }]
                     },
-                    plugins: {
-                        legend: {
-                            display: false
+                    options: {
+                        scales: {
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Date',
+                                    color: '#333',
+                                    font: {
+                                        size: 16,
+                                        weight: 'bold'
+                                    }
+                                }
+                            },
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: 'Mood',
+                                    color: '#333',
+                                    font: {
+                                        size: 16,
+                                        weight: 'bold'
+                                    }
+                                },
+                                ticks: {
+                                    callback: function (value) {
+                                        return getMoodEmoji(value); // Show emojis on y-axis
+                                    },
+                                    beginAtZero: true,
+                                    font: {
+                                        size: 30 // <-- Increase the size to enlarge emojis
+                                    },
+                                    stepSize: 1,
+                                    max: 5
+                                }
+                            }
                         },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    const moodLabels = ['Sad', 'Anxious', 'Neutral', 'Excited', 'Happy'];
-                                    return `Mood: ${moodLabels[context.raw - 1]}`;
+                        plugins: {
+                            legend: {
+                                display: false // Disable the default legend
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function (context) {
+                                        const moodLabels = ['Sad', 'Anxious', 'Neutral', 'Excited', 'Happy'];
+                                        return `Mood: ${moodLabels[context.raw - 1] || 'Unknown'}`;
+                                    }
                                 }
                             }
                         }
                     }
+                });
+            })
+            .catch(error => console.error('Error fetching mood history:', error));
+    </script>
+
+    <script>
+        // Function to process the API data and count the mood occurrences
+        function processMoodData(data) {
+            const moodCounts = {
+                excited: 0,
+                happy: 0,
+                neutral: 0,
+                sad: 0,
+                anxious: 0
+            };
+
+            // Iterate over the API response and count each mood
+            data.forEach(entry => {
+                const mood = entry.mood.toLowerCase(); // Ensure mood is lowercase
+                if (moodCounts[mood] !== undefined) {
+                    moodCounts[mood] += 1;
                 }
             });
+
+            return moodCounts;
+        }
+
+        // Mood count chart initialization
+        const ctx = document.getElementById('mood-count-chart').getContext('2d');
+        let moodCountChart;
+
+        // Function to update chart data
+        function updateChartData(moodCounts) {
+            const chartData = [
+                moodCounts.excited,
+                moodCounts.happy,
+                moodCounts.neutral,
+                moodCounts.sad,
+                moodCounts.anxious
+            ];
+
+            // If the chart already exists, update it
+            if (moodCountChart) {
+                moodCountChart.data.datasets[0].data = chartData;
+                moodCountChart.update();
+            } else {
+                // Create the chart for the first time
+                moodCountChart = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Excited', 'Happy', 'Neutral', 'Sad', 'Anxious'],
+                        datasets: [{
+                            data: chartData,
+                            backgroundColor: ['#F44336', '#FFA652', '#ececec', '#48cae4', '#FFC40B'],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: {
+                                    color: '#333',
+                                    font: {
+                                        size: 20
+                                    }
+                                }
+                            }
+                        },
+                        layout: {
+                            padding: {
+                                top: 20,
+                                bottom: 20
+                            }
+                        },
+                        cutout: '70%'
+                    }
+                });
+            }
+        }
+
+        // Fetch mood history from the backend and visualize it
+        fetch('http://localhost:3000/moods')
+            .then(response => response.json())
+            .then(data => {
+                const moodCounts = processMoodData(data); // Process the API data
+                updateChartData(moodCounts); // Update the chart with fetched data
+            })
+            .catch(error => console.error('Error fetching mood history:', error));
+
+        const mood = selectedMood.value;
+
+        // POST the new mood to the backend API (optional)
+        fetch('http://localhost:3000/moods', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ mood: mood })
         })
-        .catch(error => console.error('Error fetching mood history:', error));
+            .then(response => response.json())
+            .then(data => {
+                // Re-fetch the updated mood data and refresh the chart
+                return fetch('http://localhost:3000/moods');
+            })
+            .then(response => response.json())
+            .then(data => {
+                const moodCounts = processMoodData(data);
+                updateChartData(moodCounts);
+            })
+            .catch(error => console.error('Error submitting mood:', error));
+
     </script>
+
+    <!-- FOOTER SECTION  -->
+    <footer>
+        <p>Developed by Team <span class="team-name">beaconOfHope</span> @ 2024</p>
+    </footer>
 </body>
+
 </html>

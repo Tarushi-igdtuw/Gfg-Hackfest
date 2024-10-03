@@ -1134,3 +1134,9 @@ footer .team-name {
   color: #fff5d7;
   font-weight: bold;
 }
+
+/* MOOD HISTORY PAGE */
+#mood-history-chart {
+  max-width: 600px;
+  width: 100%;
+}

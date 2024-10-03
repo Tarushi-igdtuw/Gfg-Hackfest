@@ -1,0 +1,135 @@
+body{
+    font-family: 'Poppins', sans-serif;
+    background-color: #fff5d7;
+    margin: 100px 0;
+    padding: 0;
+    color: #333;
+    height: 100vh;
+  }
+  
+  /* Navbar Styling */
+  nav {
+    width: 100%;
+    background-color: #fff5d7;
+    box-shadow: 0 3px 20px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  nav .logo img {
+    height: 5rem;
+    width: 5rem;
+  }
+  
+  .nav-links {
+    display: flex;
+      list-style: none; 
+      width: 60vw;
+      justify-content: space-around;
+      align-items: center;
+      text-transform: uppercase;
+  }
+  
+  .nav-links li {
+    text-decoration: none;
+    font-size: 20px;
+    color: #000;
+  }
+  
+  .nav-links li a {
+    text-decoration: none;
+    font-size: 20px;
+    color: #000;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-links li a:hover {
+    color: #c80e13;
+  }
+  
+  .login-button {
+    background-color: transparent;
+    border: 1.5px solid black;
+    border-radius: 2em;
+    color: #000;
+    padding: 0.6rem 0.8rem;
+    font-size: 1rem;
+  }
+  
+  /* MOOD HISTORY PAGE */
+  #mood-history-chart {
+    max-width: 600px;
+    width: 100%;
+  }
+  
+  /* FOOTER */
+footer {
+    background-color: #ff5e6c;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    font-size: 16px;
+    box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  footer p {
+    margin: 0;
+  }
+  
+  footer .team-name {
+    color: #fff5d7;
+    font-weight: bold;
+  }
+
+ /* Adjust the size of the canvas */
+canvas {
+  display: block;
+  width: 100%; /* Full width of the parent container */
+  max-width: 1200px; /* Adjust maximum width */
+  height: 1000px; /* Set the height of the canvas */
+  margin: 0 auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.team-name {
+    font-weight: bold;
+}
+
+.sun-pics {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.sun-pics h1{
+  text-align: center;
+  padding: 20px;
+  color: #c80e13;
+  border-radius: 10px;
+  margin-top: 50px;
+  margin-bottom: 30px;
+  font-size: 60px;
+}
+.sun-pics img {
+  height: 100px;
+  width: auto;
+}
+
+
+#canvas-container {
+  margin-top: 40px;
+  margin: 20px auto;
+  margin-bottom: 45px;
+  height:500px;
+}
