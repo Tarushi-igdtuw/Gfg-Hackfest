@@ -11,7 +11,7 @@
     Choose life , Choose Hope 😇: You are not alone🌺 .
     <br/>
     <br/>
-    <a href="https://github.com/abhi03ruchi/Beacon Of Hope "><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/Tarushi-igdtuw/Gfg-Hackfest"><strong>Explore the docs »</strong></a>
     <br/>
     <br/>
     <a href="https://beacon-of-hope.vercel.app/">View Demo</a>
