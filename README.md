@@ -38,4 +38,6 @@
 * Abhiruchi Sarswat (https://github.com/abhi03ruchi)
 * Tarushi (https://github.com/Tarushi-igdtuw)
 * Harshita( https://github.com/harshita099 )
+
+  [<img src="https://github.com/{{ contributor }}.png" width="60px;"/><br /><sub><ahref="https://github.com/{{ contributor }}">{{ contributor }}</a></sub>](https://github.com/{{ contributor }}/{{ repository }}
 # Gfg-Hackfest
