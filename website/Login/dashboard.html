@@ -13,103 +13,14 @@
             "@google/generative-ai": "https://esm.run/@google/generative-ai"
           }
         }
-      </script>
-  
-      <script type="module">
-  
-          import { GoogleGenerativeAI } from "@google/generative-ai";
-          const API_KEY = "AIzaSyA6-xapIJnxF7oic1QSXjrk5R3ljJeD8Xk";
-          const genAI = new GoogleGenerativeAI(API_KEY);
-  
-          const chatbotToggler = document.querySelector(".chatbot-toggler");
-          const closeBtn = document.querySelector(".close-btn");
-          const chatbox = document.querySelector(".chatbox");
-          const chatInput = document.querySelector(".chat-input textarea");
-          const sendChatBtn = document.querySelector(".chat-input span");
-  
-          let userMessage = null;
-          const inputInitHeight = chatInput.scrollHeight;
-  
-          async function runModel(prompt) {
-              // For text-only input, use the gemini-pro model
-              const model = genAI.getGenerativeModel({ model: "gemini-pro" });
-  
-              const result = await model.generateContent(prompt);
-              const response = await result.response;
-              const text = await response.text();
-              return text;
-          }
-  
-  
-          const createChatLi = (message, className) => {
-              const chatLi = document.createElement("li");
-              chatLi.classList.add("chat", `${className}`);
-              let chatContent = className === "outgoing" ? `<p></p>` : `<span class="material-symbols-outlined">smart_toy</span><p></p>`;
-              chatLi.innerHTML = chatContent;
-              chatLi.querySelector("p").textContent = message;
-              return chatLi;
-          }
-  
-          const generateResponse = async (chatElement, userMessage) => {
-              const messageElement = chatElement.querySelector("p");
-              try {
-                  // Define your specific prompt here
-                  const prompt = "You are a mental health support AI designed to provide compassionate assistance to individuals struggling with suicidal thoughts , concerned about someone who wants to sucide or are bereaved by suicide . Respond empathetically to the user's message to help them cope. Remember to prioritize their well-being and provide reassurance that they are not alone in their struggles. If you are unsure how to respond, you can always ask clarifying questions to better understand their needs. How can I help you today?                                                                                                                                   Encourage the to prioritize self-care and seeking professional help if needed . Suggesting coping strategies such as mindfulness exercises or reaching out to a trusted friend or family member for support. Remind them that there is hope for recovery and that things can get better with time and support.                                                                                                                                                                                                                                                                Give shorter answers. Ask counter questions try to understand the user's problem. For resources( helpline numbers) refer the user to the GET HELP section of the website. Based on their condition/ situation  , tell them a a story of hope. Use emojies while conversing with user.  Do not use any offensive language.  ";
-  
-                  // eg: From 1 to 10 how would you rate your current state of mind?
-  
-                  // Generate response using the user's message and the specific prompt
-                  const answer = await runModel(`${prompt} ${userMessage}`);
-                  messageElement.textContent = answer;
-              } catch (error) {
-                  console.error("Failed to generate response", error);
-                  messageElement.textContent = "I'm sorry, I couldn't understand that.";
-              }
-              chatbox.scrollTo(0, chatbox.scrollHeight);
-          }
-  
-          const handleChat = () => {
-              userMessage = chatInput.value.trim();
-              if (!userMessage) return;
-  
-              // Clear the input textarea and set its height to default
-              chatInput.value = "";
-              chatInput.style.height = `${inputInitHeight}px`;
-  
-              // Append the user's message to the chatbox
-              chatbox.appendChild(createChatLi(userMessage, "outgoing"));
-              chatbox.scrollTo(0, chatbox.scrollHeight);
-  
-              setTimeout(() => {
-                  // Display "Thinking..." message while waiting for the response
-                  const incomingChatLi = createChatLi("Thinking...", "incoming");
-                  chatbox.appendChild(incomingChatLi);
-                  chatbox.scrollTo(0, chatbox.scrollHeight);
-                  generateResponse(incomingChatLi, userMessage);
-              }, 600);
-          }
-  
-          chatInput.addEventListener("input", () => {
-              // Adjust the height of the input textarea based on its content
-              chatInput.style.height = `${inputInitHeight}px`;
-              chatInput.style.height = `${chatInput.scrollHeight}px`;
-          });
-  
-          chatInput.addEventListener("keydown", (e) => {
-              // If Enter key is pressed without Shift key and the window
-              // width is greater than 800px, handle the chat
-              if (e.key === "Enter" && !e.shiftKey && window.innerWidth > 800) {
-                  e.preventDefault();
-                  handleChat();
-              }
-          });
-  
-          sendChatBtn.addEventListener("click", handleChat);
-          closeBtn.addEventListener("click", () => document.body.classList.remove("show-chatbot"));
-          chatbotToggler.addEventListener("click", () => document.body.classList.toggle("show-chatbot"));
-  
-      </script>
-  
+    </script>
+
+    <script type="module">
+        // Your generative AI chatbot script...
+    </script>
+
+    
+
     <!-- Navbar -->
     <nav>
         <div class="logo">
@@ -117,7 +28,7 @@
         </div>
         <ul class="nav-links">
             <li><a href="../index.html">Home</a></li>
-            <li><a href="#"><button class="login-button" id="logout-button">Logout</button></a></li>
+            <li><a href="../index.html"><button class="login-button" id="logout-button">Logout</button></a></li>
             <li id="google_translate_element"></li>
         </ul>
         <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
@@ -163,9 +74,11 @@
             </div>
         </section>
     </div>
+
     <footer>
         <p>Developed by Team <span class="team-name">beaconOfHope</span> @ 2024</p>
     </footer>
+
     <button class="chatbot-toggler">
         <span class="faceImg"> <img src="../assets/chatbot.png" alt="face"> </span>
         <span class="material-symbols-outlined">close</span>
@@ -173,7 +86,7 @@
 
     <div class="chatbot">
         <header>
-            <h2>Lumina - Your </h2>
+            <h2>Lumina - Your</h2>
             <span class="close-btn material-symbols-outlined">close</span>
         </header>
         <ul class="chatbox">
@@ -181,7 +94,7 @@
                 <span class="material-symbols-outlined">
                     psychology_alt
                 </span>
-                <p>Hi there 👋<br>How are you feeling? I'm here for you if you need to talk. </p>
+                <p>Hi there 👋<br>How are you feeling? I'm here for you if you need to talk.</p>
             </li>
         </ul>
         <div class="chat-input">
@@ -190,21 +103,36 @@
         </div>
     </div>
 
-
-    <!-- Logout Script -->
+    <!-- Firebase and Logout Script -->
     <script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-auth.js"></script>
-    <script>
-      const logoutButton = document.getElementById('logout-button');
 
-      logoutButton.addEventListener('click', () => {
-        auth.signOut().then(() => {
-          alert('Logged out successfully!');
-          window.location.href = 'login.html';
-        }).catch((error) => {
-          alert(error.message);
+    <script>
+        // Firebase configuration (Make sure to use your own Firebase credentials)
+        const firebaseConfig = {
+            apiKey: "AIzaSyA6-xapIJnxF7oic1QSXjrk5R3ljJeD8Xk",
+            authDomain: "mental-health-care-792b2.firebaseapp.com",
+            projectId: "mental-health-care-792b2",
+            storageBucket: "mental-health-care-792b2.appspot.com",
+            messagingSenderId: "439565671155",
+            appId: "1:439565671155:web:5a56c0a3a485effdfff586",
+            measurementId: "G-M56V03RYHF"
+        };
+
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+
+        // Logout Functionality
+        const logoutButton = document.getElementById('logout-button');
+        logoutButton.addEventListener('click', () => {
+            auth.signOut().then(() => {
+                alert('Logged out successfully!');
+                window.location.href = '../index.html';  // Redirect to home page after logout
+            }).catch((error) => {
+                alert(`Error: ${error.message}`);
+            });
         });
-      });
     </script>
 </body>
 </html>

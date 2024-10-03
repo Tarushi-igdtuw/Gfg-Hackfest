@@ -8,19 +8,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="form-container">
+    <div class="form-container" id="signup">
+        <div id="signUpMessage" class="messageDiv" style="display:none;"></div> <!-- This div will display error messages -->
+
         <div class="form-box">
             <h2>Register</h2>
-            <form id="register-form">
+            <form method="post" id="register-form">
                 <div class="form-item">
-                    <input type="email" id="email" name="email" required>
+                    <input type="email" id="rEmail" name="email" required>
                     <label>Email</label>
                 </div>
                 <div class="form-item">
-                    <input type="password" id="password" name="password" required>
+                    <input type="password" id="rPassword" name="password" required>
                     <label>Password</label>
                 </div>
-                <button type="submit" class="submit-btn">Register</button>
+                <button type="submit" class="submit-btn" id="submitSignUp">Register</button>
             </form>
             <p class="form-switch">Already have an account? <a href="login.html">Login here</a></p>
         </div>
@@ -28,6 +30,7 @@
     <footer>
         <p>Developed by Team <span class="team-name">beaconOfHope</span> @ 2024</p>
     </footer>
-    <script src="register.js"></script>
+    <script type="module" src="register.js"></script> <!-- Load registration script -->
+    
 </body>
 </html>

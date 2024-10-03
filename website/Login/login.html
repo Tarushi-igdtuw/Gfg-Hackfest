@@ -8,10 +8,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="form-container">
+    <div class="form-container" id="signin">
+        <div id="signInMessage" class="messageDiv" style="display: none;"></div>
+
         <div class="form-box">
             <h2>Login</h2>
             <form id="login-form">
+                <div id="signInMessage" class="messageDiv" style="display:none;"></div>
                 <div class="form-item">
                     <input type="email" id="email" name="email" required>
                     <label>Email</label>
@@ -20,7 +23,7 @@
                     <input type="password" id="password" name="password" required>
                     <label>Password</label>
                 </div>
-                <button type="submit" class="submit-btn">Login</button>
+                <button type="submit" class="submit-btn" id="submitSignIn">Login</button>
             </form>
             <p class="form-switch">Don't have an account? <a href="register.html">Register here</a></p>
         </div>
@@ -28,6 +31,7 @@
     <footer>
         <p>Developed by Team <span class="team-name">beaconOfHope</span> @ 2024</p>
     </footer>
-    <script src="login.js"></script>
+    <script type="module" src="login.js"></script>
+    
 </body>
 </html>
