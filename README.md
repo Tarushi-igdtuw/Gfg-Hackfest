@@ -36,8 +36,8 @@
 
 ## Made By :
 
-  <img src="https://github.com/abhi03ruchi.png" width="60px;"/><br /><sub><ahref="https://github.com/abhi03ruchi">abhi03ruchi</a></sub>]
-  <img src="https://github.com/harshita099.png" width="60px;"/><br /><sub><ahref="https://github.com/harshita099">harshita099</a></sub>]
-  <img src="https://github.com/Tarushi-igdtuw.png" width="60px;"/><br /><sub><ahref="https://github.com/Tarushi-igdtuw">Tarushi-igdtuw</a></sub>]
+  <img src="https://github.com/abhi03ruchi.png" width="60px;"/>
+  <img src="https://github.com/harshita099.png" width="60px;"/>
+  <img src="https://github.com/Tarushi-igdtuw.png" width="60px;"/>
   
 # Gfg-Hackfest
