@@ -35,9 +35,9 @@
 ## What's next for Beacon Of Hope
 
 ## Made By :
-[![Abhiruchi](https://avatars.githubusercontent.com/u/abhi03ruchi?s=60)](https://github.com/abhi03ruchi)
-[![Harshita](https://avatars.githubusercontent.com/u/harshita099?s=60)](https://github.com/harshita099)
-[![Tarushi](https://avatars.githubusercontent.com/u/Tarushi-igdtuw?s=60)](https://github.com/Tarushi-igdtuw)
+[![Abhiruchi](https://github.com/abhi03ruchi.png?size=60)](https://github.com/abhi03ruchi)
+[![Harshita](https://github.com/harshita099.png?size=60)](https://github.com/harshita099)
+[![Tarushi](https://github.com/Tarushi-igdtuw.png?size=60)](https://github.com/Tarushi-igdtuw)
 
   
 # Gfg-Hackfest
