@@ -39,5 +39,7 @@
 * Tarushi (https://github.com/Tarushi-igdtuw)
 * Harshita( https://github.com/harshita099 )
 
-  <img src="https://github.com/{{ contributor }}.png" width="60px;"/><br /><sub><ahref="https://github.com/{{ contributor }}">{{ contributor }}</a></sub>](https://github.com/{{ contributor }}/{{ repository }}
+  <img src="https://github.com/abhi03ruchi.png" width="60px;"/><br /><sub><ahref="https://github.com/abhi03ruchi">abhi03ruchi</a></sub>](https://github.com/abhi03ruchi/Gfg-Hackfest
+
+  
 # Gfg-Hackfest
