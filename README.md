@@ -35,12 +35,9 @@
 ## What's next for Beacon Of Hope
 
 ## Made By :
-* Abhiruchi Sarswat (https://github.com/abhi03ruchi)
-* Tarushi (https://github.com/Tarushi-igdtuw)
-* Harshita( https://github.com/harshita099 )
 
-  <img src="https://github.com/abhi03ruchi.png" width="60px;"/><br /><sub><ahref="https://github.com/abhi03ruchi">abhi03ruchi</a></sub>](https://github.com/abhi03ruchi/Gfg-Hackfest)
-    <img src="https://github.com/harshita099.png" width="60px;"/><br /><sub><ahref="https://github.com/harshita099">harshita099</a></sub>](https://github.com/harshita099/Gfg-Hackfest)
-    <img src="https://github.com/Tarushi-igdtuw.png" width="60px;"/><br /><sub><ahref="https://github.com/Tarushi-igdtuw">Tarushi-igdtuw</a></sub>](https://github.com/Tarushi-igdtuw/Gfg-Hackfest)
+  <img src="https://github.com/abhi03ruchi.png" width="60px;"/><br /><sub><ahref="https://github.com/abhi03ruchi">abhi03ruchi</a></sub>]
+  <img src="https://github.com/harshita099.png" width="60px;"/><br /><sub><ahref="https://github.com/harshita099">harshita099</a></sub>]
+  <img src="https://github.com/Tarushi-igdtuw.png" width="60px;"/><br /><sub><ahref="https://github.com/Tarushi-igdtuw">Tarushi-igdtuw</a></sub>]
   
 # Gfg-Hackfest
