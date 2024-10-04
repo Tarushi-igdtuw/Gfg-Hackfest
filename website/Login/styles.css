@@ -13,6 +13,8 @@ nav {
     background-color:  #fff5d7;
     box-shadow: 0 3px 20px rgba(0, 0, 0, 0.2);
     display: flex;
+    justify-content: space-between;
+    align-items: center;
     position: fixed;
     z-index: 10;
 }

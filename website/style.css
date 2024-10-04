@@ -979,6 +979,7 @@ body.show-chatbot .chatbot {
   opacity: 1;
   pointer-events: auto;
   transform: scale(1);
+  width: 600px;
 }
 .chatbot header {
   padding: 16px 0;
