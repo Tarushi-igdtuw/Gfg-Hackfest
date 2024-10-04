@@ -2,7 +2,8 @@
 <br/>
 <p align="center">
   <a href="https://github.com/abhi03ruchi/Beacon Of Hope ">
-    <img width="250" alt="LOGO" src="https://github.com/abhi03ruchi/BeaconOfHope/assets/105661636/80681db0-1dc3-4792-b9e8-2b18bdc87c61">
+    <img width="250" alt="LOGO copy" src="https://github.com/user-attachments/assets/07ae28f2-3e00-40ce-bbae-b02fe66cb720">
+
   </a>
 
   <h3 align="center">Beacon Of Hope</h3>
@@ -33,6 +34,7 @@ With rising mental health challenges worldwide, many people struggle to find con
   
 ## Key Features✨
 **Mood History: Track Your Emotional Journey**
+* Mood Tracking via **Chrome Extension notifications** . 
 * Monitor Emotional Trends: Our Mood History feature allows users to log and visualize their daily emotions, helping them track their mental well-being over time.
 * Gain Insights: By observing patterns in their moods, users can better understand how their mental health evolves, offering a powerful tool for self-reflection.
 Data Visualization: All submitted moods are stored and visualized on our website through interactive mood charts and mood count charts, offering users a clear understanding of their emotional journey.
