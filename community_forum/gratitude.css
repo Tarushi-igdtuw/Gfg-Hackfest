@@ -193,3 +193,29 @@ footer {
     color: #fff5d7;
     font-weight: bold;
   }
+
+
+  /* Styling for each gratitude entry */
+.gratitude-entry {
+  margin-bottom: 20px;
+  padding: 15px;
+  /* background-color: #ffe3e3; */
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.gratitude-entry .entry-date {
+  font-weight: bold;
+  color: #ff5e6c;
+  margin-bottom: 5px;
+}
+
+.gratitude-entry ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.gratitude-entry li {
+  padding: 5px 0;
+  font-size: 16px;
+}
