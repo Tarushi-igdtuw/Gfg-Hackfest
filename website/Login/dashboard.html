@@ -7,20 +7,6 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <script type="importmap">
-        {
-          "imports": {
-            "@google/generative-ai": "https://esm.run/@google/generative-ai"
-          }
-        }
-    </script>
-
-    <script type="module">
-        // Your generative AI chatbot script...
-    </script>
-
-    
-
     <!-- Navbar -->
     <nav>
         <div class="logo">
@@ -78,30 +64,6 @@
     <footer>
         <p>Developed by Team <span class="team-name">beaconOfHope</span> @ 2024</p>
     </footer>
-
-    <button class="chatbot-toggler">
-        <span class="faceImg"> <img src="../assets/chatbot.png" alt="face"> </span>
-        <span class="material-symbols-outlined">close</span>
-    </button>
-
-    <div class="chatbot">
-        <header>
-            <h2>Lumina - Your</h2>
-            <span class="close-btn material-symbols-outlined">close</span>
-        </header>
-        <ul class="chatbox">
-            <li class="chat incoming">
-                <span class="material-symbols-outlined">
-                    psychology_alt
-                </span>
-                <p>Hi there 👋<br>How are you feeling? I'm here for you if you need to talk.</p>
-            </li>
-        </ul>
-        <div class="chat-input">
-            <textarea placeholder="Enter a message..." spellcheck="false" required></textarea>
-            <span id="send-btn" class="material-symbols-rounded">send</span>
-        </div>
-    </div>
 
     <!-- Firebase and Logout Script -->
     <script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js"></script>
