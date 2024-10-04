@@ -27,7 +27,13 @@ app.get('/moods', (req, res) => {
     res.status(200).json(moods);
 });
 
-// Start the server on port 3000
-app.listen(3000, () => {
-    console.log('Server running on http://localhost:3000');
+// // Start the server on port 3000
+// app.listen(3000, () => {
+//     console.log('Server running on http://localhost:3000');
+// });
+
+// Use the port from environment variables, or default to 3000
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
 });
