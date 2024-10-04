@@ -20,6 +20,7 @@
 
 
 ## Backstory: Why We Built This Project : 
+With rising mental health challenges worldwide, many people struggle to find consistent and personalized support. Traditional mental health care can be inaccessible for some, due to various reasons such as stigma, cost, or availability of resources. Our team wanted to create a solution that could bridge this gap by offering AI-driven support alongside community engagement. That's how "Beacon of Hope" was born—a holistic mental wellness platform designed to empower users with tools to track their moods, express gratitude, and connect with others in a supportive community.
 
 ## What it does ?
 
