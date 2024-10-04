@@ -78,8 +78,8 @@ One of the main challenges I encountered during the development of our mood trac
 
 ## Made By :
 [![Abhiruchi](https://github.com/abhi03ruchi.png?size=60)](https://github.com/abhi03ruchi)
-[![Harshita](https://github.com/harshita099.png?size=60)](https://github.com/harshita099)
 [![Tarushi](https://github.com/Tarushi-igdtuw.png?size=60)](https://github.com/Tarushi-igdtuw)
+[![Harshita](https://github.com/harshita099.png?size=60)](https://github.com/harshita099)
 
   
 # Gfg-Hackfest
