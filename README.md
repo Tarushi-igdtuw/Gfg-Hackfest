@@ -69,13 +69,16 @@ With rising mental health challenges worldwide, many people struggle to find con
 <img src="https://img.shields.io/badge/firebase-ffca28?style=for-the-badge&logo=firebase&logoColor=black">  **GOOGLE GEMINI API KEY**
 
 ## Challenges We Ran Into
-**Working with Generative AI for the very first time:**
-Gen AI, although a new buzzword, presented a steep learning curve for our team. As we ventured into incorporating Generative AI technology into our chatbot for the first time, we faced challenges in understanding its capabilities, limitations, and implementation. We had to invest time and resources in learning the intricacies of this emerging technology to ensure its effective integration into our platform.
+**1. Working with Generative AI for the very first time:**
+* Gen AI, although a new buzzword, presented a steep learning curve for our team. As we ventured into incorporating Generative AI technology into our chatbot for the first time, we faced challenges in understanding its capabilities, limitations, and implementation. We had to invest time and resources in learning the intricacies of this emerging technology to ensure its effective integration into our platform.
 
-**Setting up the Chrome extension with the mood tracker API and website:**
-One of the main challenges I encountered during the development of our mood tracking feature was setting up the Chrome extension to communicate with the backend API and integrate smoothly with the website. As I was relatively new to Node.js and Chrome extensions, understanding how to create an API for mood tracking, handling data submissions at regular intervals, and ensuring proper data storage was a learning curve. Additionally, I had to ensure that the mood history could be displayed in a visually intuitive way on the website, utilizing data from the Chrome extension for accurate mood visualization. Managing these different components while ensuring a seamless user experience required significant troubleshooting and debugging, but it ultimately helped me enhance my skills in web development and API integration.
+**2. Setting up the Chrome Extension with the Mood Tracker API and website:**
+* One of the main challenges we encountered during the development of our mood tracking feature was setting up the Chrome extension to communicate with the backend API and integrate smoothly with the website. As we were relatively new to Node.js and Chrome extensions, understanding how to create an API for mood tracking, handling data submissions at regular intervals, and ensuring proper data storage was a learning curve.
+* Additionally, we had to ensure that the mood history could be displayed in a visually intuitive way on the website, utilizing data from the Chrome extension for accurate mood visualization. Managing these different components while ensuring a seamless user experience required significant troubleshooting and debugging, but it ultimately helped us enhance our skills in web development and API integration.
 
-**Firebase Integration**
+**3. Integrating Firebase with our Community Forum and Gratitude Journal**
+* At first, we encountered difficulties in establishing a connection between Firebase and our website, which resulted in issues like the submit, post, and reply buttons not capturing user input or sending data to the Firebase database. These technical hurdles slowed our progress and required a deeper understanding of how Firebase interacts with front-end components.
+* After researching Firebase's documentation and experimenting with different implementation methods, we were able to resolve these issues, successfully enabling Firebase to store user inputs and facilitate dynamic updates in real-time on our website.
 
 ## What's next for Beacon Of Hope
 **1. Incorporating AI and Machine Learning**
