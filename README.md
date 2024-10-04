@@ -33,6 +33,7 @@ With rising mental health challenges worldwide, many people struggle to find con
   
 ## Key Features✨
 **Mood History: Track Your Emotional Journey**
+* Mood Tracking via **Chrome Extension notifications** . 
 * Monitor Emotional Trends: Our Mood History feature allows users to log and visualize their daily emotions, helping them track their mental well-being over time.
 * Gain Insights: By observing patterns in their moods, users can better understand how their mental health evolves, offering a powerful tool for self-reflection.
 Data Visualization: All submitted moods are stored and visualized on our website through interactive mood charts and mood count charts, offering users a clear understanding of their emotional journey.
