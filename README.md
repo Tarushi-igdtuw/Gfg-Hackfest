@@ -24,6 +24,13 @@ With rising mental health challenges worldwide, many people struggle to find con
 
 ## What it does ?
 
+* Beacon of Hope addresses the gaps in traditional mental health care by providing a holistic platform that is accessible, affordable, and personalized.
+* Available 24/7, Lumina Bot offers compassionate and immediate support to users facing distress, suicidal thoughts, or grief. It provides personalized conversations to guide users through emotional struggles, ensuring they never feel alone.
+* Mood History helps users monitor their emotional state over time, identifying patterns in moods and allowing them to take proactive steps towards better mental health.
+* Users can connect with others in a safe, supportive environment, sharing experiences, advice, and encouragement to overcome mental health challenges.
+* Promotes positive mental health practices by encouraging users to reflect on gratitude, helping to shift focus away from negative thoughts.
+* Users can access real-life stories of resilience and recovery, fostering hope and encouragement. The platform also provides expert resources, including psychologist videos and helpline numbers, ensuring professional support is always available.
+  
 ## Key Features✨
 **Mood History: Track Your Emotional Journey**
 Monitor Emotional Trends: Our Mood History feature allows users to log and visualize their daily emotions, helping them track their mental well-being over time.
