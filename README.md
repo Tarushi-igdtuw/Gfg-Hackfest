@@ -45,14 +45,14 @@ Data Visualization: All submitted moods are stored and visualized on our website
 **Community Forum: Engage & Support**
 * A safe and supportive space where user can share their experiences, ask questions, and connect with others who understand their journey.
 * Here user can , share their stories anonymously about overcoming life's challenges or mental health conditions, seek advice, respond to others facing similar experiences, and offer support through meaningful conversations.
-<img width="300" height="200" alt="Screenshot 2024-10-04 at 10 45 25 PM" src="https://github.com/user-attachments/assets/b62bf73c-a18a-46a7-a9e4-4511dcf234d6">
+<img width="800" height="200" alt="Screenshot 2024-10-04 at 10 45 25 PM" src="https://github.com/user-attachments/assets/b62bf73c-a18a-46a7-a9e4-4511dcf234d6">
 
 **Gratitude Journal: Cultivate Positivity**
 * Gratitude Journal feature allows users to log three daily entries of things they are grateful for, fostering a habit of positive reflection.
 * By storing these entries securely in Firebase, users can track their gratitude over time and observe how it impacts their well-being.
 * We have also included positive affirmation prompts that encourage self-compassion and positive thinking.
 * Encourages a daily habit of reflection and helping users focus on positive aspects of life.
-<img width="300" height="200" alt="Screenshot 2024-10-04 at 10 48 07 PM" src="https://github.com/user-attachments/assets/f3d141ee-9fb4-480a-858d-9f6da2d193e0">
+<img width="800" height="200" alt="Screenshot 2024-10-04 at 10 48 07 PM" src="https://github.com/user-attachments/assets/f3d141ee-9fb4-480a-858d-9f6da2d193e0">
 
 
 **Lumina Bot: Your AI Mental Health Assistant**
