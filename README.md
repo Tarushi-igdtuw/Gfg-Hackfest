@@ -40,7 +40,7 @@ Data Visualization: All submitted moods are stored and visualized on our website
 <img src="https://img.shields.io/badge/firebase-ffca28?style=for-the-badge&logo=firebase&logoColor=black">
 
 ## Challenges We Ran Into
-**Working with Generative AI for the very first time: **
+**Working with Generative AI for the very first time:**
 Gen AI, although a new buzzword, presented a steep learning curve for our team. As we ventured into incorporating Generative AI technology into our chatbot for the first time, we faced challenges in understanding its capabilities, limitations, and implementation. We had to invest time and resources in learning the intricacies of this emerging technology to ensure its effective integration into our platform.
 
 ## What's next for Beacon Of Hope
