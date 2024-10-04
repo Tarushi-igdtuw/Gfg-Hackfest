@@ -25,14 +25,13 @@ With rising mental health challenges worldwide, many people struggle to find con
 ## What it does ?
 
 ## Key Features✨
-**Mood History: Track Your Emotional Journey**
+** 1) Mood History: Track Your Emotional Journey**
 Monitor Emotional Trends: Our Mood History feature allows users to log and visualize their daily emotions, helping them track their mental well-being over time.
 Gain Insights: By observing patterns in their moods, users can better understand how their mental health evolves, offering a powerful tool for self-reflection.
 Data Visualization: All submitted moods are stored and visualized on our website through interactive mood charts and mood count charts, offering users a clear understanding of their emotional journey.
 
-![image](https://github.com/user-attachments/assets/689e9463-9cbd-42c9-8859-29ff2775a24c)
-![image](https://github.com/user-attachments/assets/c68b59c9-a6df-4c03-80bd-6729309d195d)
-
+<img src="https://github.com/user-attachments/assets/689e9463-9cbd-42c9-8859-29ff2775a24c" alt="Image 1" width="300" height="200">
+<img src="https://github.com/user-attachments/assets/c68b59c9-a6df-4c03-80bd-6729309d195d" alt="Image 2" width="300" height="200">
 
 
 ## Built With :
