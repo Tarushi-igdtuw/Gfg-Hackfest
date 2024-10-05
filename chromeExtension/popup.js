@@ -44,26 +44,6 @@ function saveMood(mood) {
   });
 }
 
-// // Function to send mood to the API
-// function sendMoodToAPI(mood) {
-//   const moodData = {
-//     mood: mood,
-//     date: new Date().toISOString()  // Using ISO format for date
-//   };
-
-//   fetch('http://localhost:3000/moods', {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify(moodData),
-//   })
-//     .then(response => response.json())
-//     .then(data => console.log('Mood data sent successfully:', data))
-//     .catch((error) => console.error('Error sending mood data:', error));
-// }
-
-
 // Function to send mood to the API
 function sendMoodToAPI(mood) {
   const moodData = {
@@ -71,11 +51,7 @@ function sendMoodToAPI(mood) {
     date: new Date().toISOString()  // Using ISO format for date
   };
 
-  const API_URL = process.env.NODE_ENV === 'production' 
-    ? 'https://your-production-api-url.com/moods' 
-    : 'http://localhost:3000/moods';  // Use correct URL based on environment
-
-  fetch(API_URL, {
+  fetch('http://localhost:3000/moods', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -86,3 +62,5 @@ function sendMoodToAPI(mood) {
     .then(data => console.log('Mood data sent successfully:', data))
     .catch((error) => console.error('Error sending mood data:', error));
 }
+
+
