@@ -32,8 +32,8 @@ app.get('/moods', (req, res) => {
 //     console.log('Server running on http://localhost:3000');
 // });
 
-// Use the port from environment variables, or default to 3000
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
+// Start the server on the port provided by the platform, or fallback to 3000
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
 });
